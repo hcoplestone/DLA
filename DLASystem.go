@@ -295,9 +295,9 @@ func (dla *DLASystem) PersistGridToFile(filename string) {
 	for _, column := range dla.grid {
 		for _, row := range column {
 			if row {
-				gridpointMarker = "1"
+				gridpointMarker = "1 "
 			} else {
-				gridpointMarker = "0"
+				gridpointMarker = "0 "
 			}
 			if _, err = f.WriteString(gridpointMarker); err != nil {
 				panic(err)

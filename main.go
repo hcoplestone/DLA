@@ -32,7 +32,6 @@ func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
 
 	i := 1
 	for {
-		// time.Sleep(1 * time.Millisecond)
 		dla.Update()
 
 		if i%100 == 0 {
