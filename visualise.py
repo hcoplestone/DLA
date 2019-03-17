@@ -3,11 +3,11 @@ import matplotlib.pyplot as plt
 
 fig = plt.figure()
 
-for i in range(0, 3):
+for i in range(0, 16):
     filename = 'results/ensemble' + str(i) + '.dat'
 
     grid = np.loadtxt(filename, int)
-    ax = fig.add_subplot(1, 3, i+1)
+    ax = fig.add_subplot(4, 4, i+1)
 
     ax.set_title('Ensemble ' + str(i))
     plt.imshow(grid)
