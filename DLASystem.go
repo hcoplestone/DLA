@@ -1,10 +1,12 @@
 package main
 
-import "fmt"
-import "math"
-import "os"
-import "os/exec"
-import "log"
+import (
+	"fmt"
+	"log"
+	"math"
+	"os"
+	"os/exec"
+)
 
 // DLASystem is a contained system for modelling Diffusion Limited Aggregation
 type DLASystem struct {
@@ -171,7 +173,9 @@ func (dla *DLASystem) MoveLastParticle() {
 	} else {
 		// If we get here then we are trying to move to an occupied site
 		// This should never happen as long as sticking probability = 1
-		fmt.Printf("Move to (%d, %d) REJECTED", positionOfNewCell[0], positionOfNewCell[1])
+		if dla.verbose {
+			fmt.Printf("Move to (%d, %d) REJECTED", positionOfNewCell[0], positionOfNewCell[1])
+		}
 	}
 }
 
@@ -190,8 +194,8 @@ func (dla *DLASystem) UpdateClusterRadius(lastParticlePosition [2]int) {
 			dla.addCircle = check
 			dla.killCircle = dla.killRatio * dla.addCircle
 		}
-		dla.CheckIfShouldStop()
 	}
+	dla.CheckIfShouldStop()
 }
 
 // CheckIfShouldStop stops the simulation if the cluster is big enough
@@ -201,13 +205,16 @@ func (dla *DLASystem) UpdateClusterRadius(lastParticlePosition [2]int) {
 func (dla *DLASystem) CheckIfShouldStop() bool {
 	if dla.killCircle+2 >= float64(dla.gridSize)/2 {
 		dla.PauseSimulation()
-		if dla.verbose {
-			fmt.Println("Simulation finishing...")
-		}
+		// if dla.verbose {
+		fmt.Println("Simulation finishing because grid limit reached...")
+		// }
 		return true
 	}
 	if dla.numberOfParticles == dla.endNumberOfParticles {
 		dla.PauseSimulation()
+		// if dla.verbose {
+		fmt.Println("Simulation finishing because max number of particles reached...")
+		// }
 		return true
 	}
 	return false
