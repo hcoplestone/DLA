@@ -4,17 +4,28 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
 )
 
-func runSystem(seed int64, wg *sync.WaitGroup, filename string) {
-	dla := NewDLASystem(480, 1.2, 1.7, 10000, seed)
-	// dla.DisplayGrid()
+func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
+	defer wg.Done()
+
+	var filenameComponents []string
+	var csvFilename, gridFilename string
+
+	filenameComponents = []string{"results/ensemble", strconv.Itoa(systemID), ".csv"}
+	csvFilename = strings.Join(filenameComponents, "")
+
+	filenameComponents = []string{"results/ensemble", strconv.Itoa(systemID), ".dat"}
+	gridFilename = strings.Join(filenameComponents, "")
+
+	dla := NewDLASystem(30, 1.2, 1.7, 5, seed, false)
 	dla.isRunning = true
 
-	f, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(csvFilename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -24,8 +35,7 @@ func runSystem(seed int64, wg *sync.WaitGroup, filename string) {
 		// time.Sleep(1 * time.Millisecond)
 		dla.Update()
 
-		if i%10 == 0 {
-			fmt.Printf(".")
+		if i%100 == 0 {
 			if _, err := f.Write([]byte(fmt.Sprintf("%d,%f\n", dla.numberOfParticles, dla.clusterRadius))); err != nil {
 				log.Fatal(err)
 			}
@@ -41,30 +51,26 @@ func runSystem(seed int64, wg *sync.WaitGroup, filename string) {
 		}
 	}
 
-	fmt.Println("\nFinished!")
+	fmt.Println("System " + strconv.Itoa(systemID) + " finished!")
 
 	if err := f.Close(); err != nil {
 		log.Fatal(err)
 	}
 
-	wg.Done()
-
+	dla.PersistGridToFile(gridFilename)
 	// dla.DisplayGrid()
 }
 
 func main() {
-	var wg sync.WaitGroup
+	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	var filenameComponents []string
-	var filename string
+	var wg sync.WaitGroup
 
 	i := 0
 	for i < 100 {
-		filenameComponents = []string{"results/ensemble", strconv.Itoa(i), ".csv"}
 		wg.Add(1)
 		fmt.Printf("Starting system %d\n", i)
-		filename = strings.Join(filenameComponents, "")
-		go runSystem(int64(i), &wg, filename)
+		go runSystem(int64(i), &wg, i)
 		i++
 	}
 

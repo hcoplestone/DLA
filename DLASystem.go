@@ -4,6 +4,7 @@ import "fmt"
 import "math"
 import "os"
 import "os/exec"
+import "log"
 
 // DLASystem is a contained system for modelling Diffusion Limited Aggregation
 type DLASystem struct {
@@ -34,11 +35,9 @@ type DLASystem struct {
 }
 
 // NewDLASystem initialises a new DLA system
-func NewDLASystem(gridSize int, addRatio float64, killRatio float64, endNumberOfParticles int, seed int64) *DLASystem {
-	fmt.Printf("Creating system, grid size %d.\n", gridSize)
-
+func NewDLASystem(gridSize int, addRatio float64, killRatio float64, endNumberOfParticles int, seed int64, verbose bool) *DLASystem {
 	dla := new(DLASystem)
-	dla.verbose = false
+	dla.verbose = verbose
 	dla.gridSize = gridSize
 	dla.addRatio = addRatio
 	dla.killRatio = killRatio
@@ -50,6 +49,10 @@ func NewDLASystem(gridSize int, addRatio float64, killRatio float64, endNumberOf
 	dla.grid = make([][]bool, gridSize)
 	for i := 0; i < gridSize; i++ {
 		dla.grid[i] = make([]bool, gridSize)
+	}
+
+	if dla.verbose {
+		fmt.Printf("Creating system, grid size %d.\n", gridSize)
 	}
 
 	dla.randomGenerator = NewRandomGenerator(seed)
@@ -272,4 +275,33 @@ func (dla *DLASystem) SetGrid(position [2]int, isOccupied bool) {
 func (dla *DLASystem) ReadGrid(position [2]int) bool {
 	halfGrid := dla.gridSize / 2
 	return dla.grid[position[0]+halfGrid][position[1]+halfGrid]
+}
+
+// PersistGridToFile persists the state of the grid to disc
+func (dla *DLASystem) PersistGridToFile(filename string) {
+	f, err := os.OpenFile(filename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var gridpointMarker string
+	for _, column := range dla.grid {
+		for _, row := range column {
+			if row {
+				gridpointMarker = "1"
+			} else {
+				gridpointMarker = "0"
+			}
+			if _, err = f.WriteString(gridpointMarker); err != nil {
+				panic(err)
+			}
+		}
+		if _, err = f.WriteString("\n"); err != nil {
+			panic(err)
+		}
+	}
+
+	if err := f.Close(); err != nil {
+		log.Fatal(err)
+	}
 }
