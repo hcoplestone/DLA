@@ -68,7 +68,7 @@ func main() {
 	var wg sync.WaitGroup
 
 	i := 0
-	for i < numberOfCores {
+	for i < 100 {
 		wg.Add(1)
 		fmt.Printf("Starting system %d\n", i)
 		go runSystem(int64(i), &wg, i)
