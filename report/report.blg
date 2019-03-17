@@ -7,45 +7,45 @@ Name 1 in "A. Souslov, V. Rimpilainen, and R. Jack" has a comma at the end for e
 while executing---line 1049 of file plain.bst
 Name 1 in "A. Souslov, V. Rimpilainen, and R. Jack" has a comma at the end for entry handout
 while executing---line 1090 of file plain.bst
-You've used 2 entries,
+You've used 3 entries,
             2118 wiz_defined-function locations,
-            510 strings with 4185 characters,
-and the built_in function-call counts, 566 in all, are:
-= -- 53
-> -- 26
+            517 strings with 4356 characters,
+and the built_in function-call counts, 797 in all, are:
+= -- 77
+> -- 33
 < -- 0
-+ -- 10
-- -- 8
-* -- 34
-:= -- 102
-add.period$ -- 6
-call.type$ -- 2
-change.case$ -- 10
++ -- 13
+- -- 10
+* -- 44
+:= -- 144
+add.period$ -- 10
+call.type$ -- 3
+change.case$ -- 13
 chr.to.int$ -- 0
-cite$ -- 2
-duplicate$ -- 18
-empty$ -- 47
-format.name$ -- 8
-if$ -- 117
+cite$ -- 3
+duplicate$ -- 30
+empty$ -- 69
+format.name$ -- 10
+if$ -- 168
 int.to.chr$ -- 0
-int.to.str$ -- 2
-missing$ -- 1
-newline$ -- 13
-num.names$ -- 4
-pop$ -- 12
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 18
+num.names$ -- 6
+pop$ -- 17
 preamble$ -- 1
-purify$ -- 8
+purify$ -- 11
 quote$ -- 0
-skip$ -- 16
+skip$ -- 22
 stack$ -- 0
-substring$ -- 25
-swap$ -- 2
+substring$ -- 30
+swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 10
 warning$ -- 0
-while$ -- 5
-width$ -- 3
-write$ -- 23
+while$ -- 7
+width$ -- 4
+write$ -- 35
 (There were 2 error messages)
