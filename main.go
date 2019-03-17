@@ -13,7 +13,7 @@ import (
 func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
 	defer wg.Done()
 
-	dla := NewDLASystem(10000, 1.2, 1.7, 5000, seed, false)
+	dla := NewDLASystem(1000, 1.2, 1.7, 10000, seed, false)
 	dla.isRunning = true
 
 	var filenameComponents []string
@@ -69,12 +69,13 @@ func main() {
 	var wg sync.WaitGroup
 
 	i := 0
-	for i < 4 {
+	for i < 3 {
 		wg.Add(1)
 		fmt.Printf("Starting system %d\n", i)
 		go runSystem(int64(i), &wg, i)
 		i++
 	}
+	fmt.Println("")
 
 	wg.Wait()
 	fmt.Println("\nAll systems complete!!!")
