@@ -194,12 +194,17 @@ func (dla *DLASystem) UpdateClusterRadius(lastParticlePosition [2]int) {
 // CheckIfShouldStop stops the simulation if the cluster is big enough
 // To be safe, we need the kill circle to be at leat 2 less than the
 // edge of the grid
+// Also stop if total number of particles reached.
 func (dla *DLASystem) CheckIfShouldStop() bool {
 	if dla.killCircle+2 >= float64(dla.gridSize)/2 {
 		dla.PauseSimulation()
 		if dla.verbose {
 			fmt.Println("Simulation finishing...")
 		}
+		return true
+	}
+	if dla.numberOfParticles == dla.endNumberOfParticles {
+		dla.PauseSimulation()
 		return true
 	}
 	return false
