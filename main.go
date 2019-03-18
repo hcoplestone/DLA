@@ -11,7 +11,7 @@ import (
 func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
 	defer wg.Done()
 
-	dla := NewDLASystem(30, 1.2, 1.7, 3000, seed, 0.5, false)
+	dla := NewDLASystem(30, 1.2, 1.7, 3000, seed, 1.0, false)
 	dla.isRunning = true
 
 	// var filenameComponents []string

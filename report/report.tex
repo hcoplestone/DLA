@@ -96,7 +96,7 @@ which in the limit of large $r_{max}$ gives
 
 \subsection{Sticking Probabilities}
 
-DLA systems can be setup so that the sticking probability $p_{stick}$ is less than 1, indicating that a particle may sometimes collide with a cluster and recoil. This is useful when studying systems with a high thermodynamic temperature, for example. To achieve this, when the system determines that a particle has moved into a grid cell where there is the possibility of 'sticking', a random number $p$ is sampled from a continuous uniform distribution $P \sim$ $\mathcal{U}\{0, 1\}$. If $p \leq p_{stick}$ then the particle is marked as stationary and the system proceeds to add a new particle. In the case $p > p_{stick}$, the direction of the particle is reversed and moved one grid cell. 
+DLA systems can be setup so that the sticking probability $p_{stick}$ is less than 1, indicating that a particle may sometimes collide with a cluster and recoil. This is useful when studying systems with a high thermodynamic temperature, for example. To achieve this, when the system determines that a particle has moved into a grid cell where there is the possibility of 'sticking', a random number $p$ is sampled from a continuous uniform distribution $P \sim$ $\mathcal{U}\{0, 1\}$. If $p \leq p_{stick}$ then the particle is marked as stationary and the system proceeds to add a new particle. In the case $p > p_{stick}$, the particle remains in the grid cell adjacent to the cluster but is not marked as stationary. The system then proceeds to generate a new random direction to attempt to move the particle in. If the algorithm tries to move the free particle into a grid cell that is occupied by a cluster cell, the move is rejected and a new random direction is generated until a successful move is made.
 
 \section{Results}
 
@@ -115,12 +115,12 @@ Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the c
 
 Figure \ref{fig:selfsimilar} shows graphical representations of the results of a DLA simulation with 3000 particles. \ref{fig:selfsimilar} (a) shows the entire cluster and (b) shows the bounded area from (a) magnified. Observe how all the major branching parts in Figure 3 (b) have exactly two child branches - one emerging downwards and one emerging to the left. This demonstrates the fractal, or self-similar, nature of the DLA model.
 
-\begin{figure}[h]
+\begin{figure}[t]
     \centering
     \subfloat[Entire DLA Cluster]{{\includegraphics[width=8cm]{images/cluster.png} }}\quad
      \subfloat[Magnification of lower left branch]{{\includegraphics[width=8cm]{images/Zoomed.png} }}\\
  
-    \caption{Graphical representation of a DLA cluster with 3000 particles. (a) shows the entire DLA cluster and (b) shows a magnification of the bordered section in (a).}
+    \caption{Graphical representation of a DLA cluster with 3000 particles and a sticking probability of $p_{stick} = 1.0$. (a) shows the entire DLA cluster and (b) shows a magnification of the bordered section in (a).}
     \label{fig:selfsimilar}
 \end{figure}
 
