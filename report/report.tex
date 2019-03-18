@@ -70,11 +70,11 @@ To simulate the Brownian motion of diffusing particles, DLA simulations have fre
 \label{averageequation}
 \overline{\xi(t)} = \frac{1}{n}\sum_{i=1}^{n}{\xi_i(t)}
 \end{equation}
-Standard error $\sigma_{\overline{\xi}}$ can be used as a measure of how close the ensemble average is to the true value:
+%Standard error $\sigma_{\overline{\xi}}$ can be used as a measure of how close the ensemble average is to the true value:
 
-\begin{equation}
-\sigma_{\overline{\xi}} = \frac{1}{\sqrt{n-1}} \left[ \overline{\xi(t)^2} - \overline{\xi(t)}^2 \right]^{1/2}
-\end{equation}
+%\begin{equation}
+%\sigma_{\overline{\xi}} = \frac{1}{\sqrt{n-1}} \left[ \overline{\xi(t)^2} - \overline{\xi(t)}^2 \right]^{1/2}
+%\end{equation}
 
 \subsection{Determining the Fractal Dimension of DLA Aggregates}
 
@@ -104,7 +104,7 @@ DLA systems can be setup so that the sticking probability $p_{stick}$ is less th
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.7\linewidth]{images/loggraph.png}
+  \includegraphics[width=0.8\linewidth]{images/loggraph.png}
   \caption{Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$. Data points represent average over 1000 subsystems using equation \ref{averageequation}. Error bars represent the standard deviation in the values of $\ln r_{max}$. Application of equation \ref{dflogequation} yields $d_f = 1.74$.}
   \label{fig:loggraph}
 \end{figure}
@@ -113,7 +113,7 @@ Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the c
 
 \subsection{Self Similarity}
 
-Figure \ref{fig:selfsimilar} shows graphical representations of the results of a DLA simulation with 3000 particles.
+Figure \ref{fig:selfsimilar} shows graphical representations of the results of a DLA simulation with 3000 particles. \ref{fig:selfsimilar} (a) shows the entire cluster and (b) shows the bounded area from (a) magnified. Observe how all the major branching parts in Figure 3 (b) have exactly two child branches - one emerging downwards and one emerging to the left. This demonstrates the fractal, or self-similar, nature of the DLA model.
 
 \begin{figure}[h]
     \centering
