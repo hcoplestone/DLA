@@ -13,16 +13,16 @@ import (
 func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
 	defer wg.Done()
 
-	dla := NewDLASystem(3000, 1.2, 1.7, 100000, seed, false)
+	dla := NewDLASystem(450, 1.2, 1.7, 3000, seed, false)
 	dla.isRunning = true
 
 	var filenameComponents []string
 	var csvFilename, gridFilename string
 
-	filenameComponents = []string{"results/ensemble", strconv.Itoa(systemID), ".csv"}
+	filenameComponents = []string{"results/second/ensemble", strconv.Itoa(systemID), ".csv"}
 	csvFilename = strings.Join(filenameComponents, "")
 
-	filenameComponents = []string{"results/ensemble", strconv.Itoa(systemID), ".dat"}
+	filenameComponents = []string{"results/second/ensemble", strconv.Itoa(systemID), ".dat"}
 	gridFilename = strings.Join(filenameComponents, "")
 
 	f, err := os.OpenFile(csvFilename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
@@ -30,13 +30,18 @@ func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
 		log.Fatal(err)
 	}
 
+	var lastNumberOfParticlesWrittenAt int
 	i := 1
 	for {
 		dla.Update()
 
-		if i%100 == 0 {
+		if dla.numberOfParticles%100 == 0 && dla.lastParticleIsActive == false &&
+			lastNumberOfParticlesWrittenAt != dla.numberOfParticles {
 			if _, err := f.Write([]byte(fmt.Sprintf("%d,%f\n", dla.numberOfParticles, dla.clusterRadius))); err != nil {
 				log.Fatal(err)
+			}
+			if err == nil {
+				lastNumberOfParticlesWrittenAt = dla.numberOfParticles
 			}
 		}
 
@@ -68,7 +73,7 @@ func main() {
 	var wg sync.WaitGroup
 
 	i := 0
-	for i < numberOfCores {
+	for i < 4 {
 		wg.Add(1)
 		fmt.Printf("Starting system %d\n", i)
 		go runSystem(int64(i), &wg, i)

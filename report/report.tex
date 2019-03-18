@@ -21,7 +21,7 @@
 %Makes TODO notes format properly in margin
 \setlength{\marginparwidth}{1.5cm}
 
-\title[]{The Effects of Simulation Parameters When Modelling Systems Using Diffusion Limited Aggregation}
+\title[]{Thermodynamics and Diffusion Limited Aggregation}
 
 \author{Candidate Number: 21594}
 
@@ -50,7 +50,7 @@ Although the coursework was initially presented as a C++ project, I took the lib
 
 Diffusion Limited Aggregation (DLA) is a theory that models the process of how clusters of particles grow, in cases where growth is driven primarily by diffusion. \cite{dla}
 
-\begin{figure}[h]
+\begin{figure}[b]
   \centering
   \includegraphics[width=0.5\linewidth]{images/circles.png}
   \caption{"Diagram of the circles used in the DLA code. The initial particle is shown in dark blue, and all circles are centred on this particle. There are three circles which indicate the approximate cluster size ('cluster circle'), the locations at which particles are introduced to the system ('starting circle'), and the points at which particles are removed from the system, to prevent them from wandering too far from the cluster ('killing circle')." Diagram and caption lifted verbatim from \cite{handout}.}
@@ -59,7 +59,7 @@ Diffusion Limited Aggregation (DLA) is a theory that models the process of how c
 
 In the DLA method used in this paper, a stationary seed particle is placed at the centre of a regular square lattice. This seed particle defines the origin of our system, as shown in Figure 1. A particle is then added to the system at a radius $r_{start}$ from the origin. This radius is computed such that each new particle is added at a radius greater than the radius of any stationary particle in the system. Diffusion limited transport is driven by Brownian motion \cite{brownian}, a random process, so the new particle is made to undergo a Markovian random walk through the system. If the particle moves to a cell on the lattice that is horizontally or vertically adjacent to a stationary particle, the particle is stuck to the grid cell with a sticking probability $p_{stick}$. If the particle moves too far away from the cluster, as defined by a radius $r_{kill}$, the particle is removed from the system. Once a particle is stuck to the cluster or killed for 'walking' too far away, a new particle is added on the start circle and the process is repeated. The simulation is terminated when the border of the cluster approaches the edge of the lattice or when the total number of particles in the cluster reaches a predefined limit.
 
-In this paper, we investigate whether the maximum number of particles used in a DLA system affects the fractal index of the generated cluster. We also investigate how fractal dimension depends on the sticking probability $d_f$, and link this to the thermodynamics of a growing system.
+In this paper, it is tested to see if the maximum number of particles used in a DLA system affects the fractal index of the generated cluster. Enquiry is also made into how fractal dimension depends on the sticking probability $d_f$, as this links to the thermodynamics of physical systems that can be modelled using DLA.
 
 \section{Method}
 \subsection{Random Walks and Ensemble Averaging}
@@ -67,6 +67,7 @@ To simulate the Brownian motion of diffusing particles, DLA simulations have fre
 
 
 \begin{equation}
+\label{averageequation}
 \overline{\xi(t)} = \frac{1}{n}\sum_{i=1}^{n}{\xi_i(t)}
 \end{equation}
 Standard error $\sigma_{\overline{\xi}}$ can be used as a measure of how close the ensemble average is to the true value:
@@ -77,24 +78,51 @@ Standard error $\sigma_{\overline{\xi}}$ can be used as a measure of how close t
 
 \subsection{Determining the Fractal Dimension of DLA Aggregates}
 
-DLA clusters are fractal objects. This means their geometric structure can be described by a measure called 'fractal index', $d_f$ \cite{handout}. To determine the fractal dimension of each of the DLA clusters generated, a curve of the form
+DLA clusters are fractal objects. This means their geometric structure can be described by a measure called 'fractal index', $d_f$. For a DLA system, the fractal dimension can be defined by \cite{handout}
+
 \begin{equation}
 N_c(r_{max}) = (\alpha \cdot r_{max})^{d_f} + \beta
-\end{equation}
-is fitted to the simulation data using a least squares fitting to optimise the free parameters $\alpha$, $\beta$ and $d_f$. 
+\end{equation} 
+Taking logs of both sides and differentiating with respect to $\ln r_{max}$ yields
 
+\begin{equation}
+\frac{d(\ln r_{max})}{d(\ln N_c)} = \frac{1 + \beta/(\alpha \cdot r_{max})^{d_f}}{d_f}
+\end{equation} 
+which in the limit of large $r_{max}$ gives
+\begin{equation}
+\label{dflogequation}
+\lim_{r_{max}\to\infty} \frac{d(\ln r_{max})}{d(\ln N_c)}  = \frac{1}{d_f}
+\end{equation}
 
 \subsection{Sticking Probabilities}
 
-DLA systems can be setup so that the sticking probability $p_{stick}$ is less than 1, indicating that a particle may sometimes collide with the cluster and recoil. This is useful when studying systems with a high thermodynamic temperature, for example. To achieve this, when the system determines that a particle has moved into a grid cell where there is the possibility of 'sticking', a random number $p$ is sampled from a continuous uniform distribution $P \sim$ $\mathcal{U}\{0, 1\}$. if $p <= p_{stick}$ then we mark the particle as stationary and continue to add a new particle to the DLA simulation. In the case $p > p_{stick}$, the direction of the particle is reversed and moved one grid cell. 
-
-Talk about method of varying sticking probability and calculating sticking probability. Include values for number of particles, and number of ensembles.
+DLA systems can be setup so that the sticking probability $p_{stick}$ is less than 1, indicating that a particle may sometimes collide with a cluster and recoil. This is useful when studying systems with a high thermodynamic temperature, for example. To achieve this, when the system determines that a particle has moved into a grid cell where there is the possibility of 'sticking', a random number $p$ is sampled from a continuous uniform distribution $P \sim$ $\mathcal{U}\{0, 1\}$. If $p \leq p_{stick}$ then the particle is marked as stationary and the system proceeds to add a new particle. In the case $p > p_{stick}$, the direction of the particle is reversed and moved one grid cell. 
 
 \section{Results}
 
 \subsection{Determining the Fractal Dimensions of DLA Aggregates}
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.7\linewidth]{images/loggraph.png}
+  \caption{Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$. Data points represent average over 1000 subsystems using equation \ref{averageequation}. Error bars represent the standard deviation in the values of $\ln r_{max}$. Application of equation \ref{dflogequation} yields $d_f = 1.74$.}
+  \label{fig:loggraph}
+\end{figure}
 
+Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the cluster radius as a function of the natural log of the number of particles in the DLA cluster, averaged over $n=1000$ independent systems with different random number generator seeds. Application of equation \ref{dflogequation} yields a fractal dimension for 2D DLA systems of $d_f = 1.74$. \todo{Need to calculate error}
+
+\subsection{Self Similarity}
+
+Figure \ref{fig:selfsimilar} shows graphical representations of the results of a DLA simulation with 3000 particles.
+
+\begin{figure}[h]
+    \centering
+    \subfloat[Entire DLA Cluster]{{\includegraphics[width=8cm]{images/cluster.png} }}\quad
+     \subfloat[Magnification of branch]{{\includegraphics[width=8cm]{images/Zoomed.png} }}\\
+ 
+    \caption{Graphical representation of a DLA cluster with 3000 particles. (a) shows the entire DLA cluster and (b) shows a magnification of the bordered section in (a).}
+    \label{fig:selfsimilar}
+\end{figure}
 
 \section{Discussion}
 bla

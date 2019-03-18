@@ -5,7 +5,6 @@ import (
 	"log"
 	"math"
 	"os"
-	"os/exec"
 )
 
 // DLASystem is a contained system for modelling Diffusion Limited Aggregation
@@ -65,10 +64,10 @@ func NewDLASystem(gridSize int, addRatio float64, killRatio float64, endNumberOf
 
 // DisplayGrid prints grid to stdout
 func (dla *DLASystem) DisplayGrid() {
-	// fmt.Printf("\n")
-	cmd := exec.Command("clear") //Linux example, its tested
-	cmd.Stdout = os.Stdout
-	cmd.Run()
+	fmt.Printf("\n")
+	// cmd := exec.Command("clear") //Linux example, its tested
+	// cmd.Stdout = os.Stdout
+	// cmd.Run()
 	for _, column := range dla.grid {
 		for _, row := range column {
 			if row {
