@@ -32,17 +32,20 @@ type DLASystem struct {
 
 	randomGenerator *RandomGenerator
 
+	stickingProbability float64
+
 	verbose bool
 }
 
 // NewDLASystem initialises a new DLA system
-func NewDLASystem(gridSize int, addRatio float64, killRatio float64, endNumberOfParticles int, seed int64, verbose bool) *DLASystem {
+func NewDLASystem(gridSize int, addRatio float64, killRatio float64, endNumberOfParticles int, seed int64, stickingProbability float64, verbose bool) *DLASystem {
 	dla := new(DLASystem)
 	dla.verbose = verbose
 	dla.gridSize = gridSize
 	dla.addRatio = addRatio
 	dla.killRatio = killRatio
 	dla.endNumberOfParticles = endNumberOfParticles
+	dla.stickingProbability = stickingProbability
 
 	dla.particleList = make([]*Particle, endNumberOfParticles)
 	dla.numberOfParticles = 0
@@ -135,6 +138,14 @@ func (dla *DLASystem) DeterminePositionDistanceFromOrigin(position [2]int) float
 	return math.Sqrt(radiusSquared)
 }
 
+// DetermineIfShouldStickInsteadOfRecoil uses sticking probability to determine if a particle should
+// stick instead of recoil
+func (dla *DLASystem) DetermineIfShouldStickInsteadOfRecoil() bool {
+	var samplingProbability float64
+	samplingProbability = dla.randomGenerator.rand.Float64()
+	return samplingProbability <= dla.stickingProbability
+}
+
 // MoveLastParticle moves the last added particle
 func (dla *DLASystem) MoveLastParticle() {
 	if dla.verbose {
@@ -153,6 +164,7 @@ func (dla *DLASystem) MoveLastParticle() {
 	distanceOfNewPositionFromOrigin = dla.DeterminePositionDistanceFromOrigin(positionOfNewCell)
 	// fmt.Printf("Distance is %f\nKill circle is %f", distanceOfNewPositionFromOrigin, dla.killCircle)
 	if distanceOfNewPositionFromOrigin > dla.killCircle {
+		// Kill particle if outside kill circle...
 		if dla.verbose {
 			fmt.Println("KILLING PARTICLE")
 		}
@@ -161,6 +173,8 @@ func (dla *DLASystem) MoveLastParticle() {
 		dla.numberOfParticles--
 		dla.SetParticleInactive()
 	} else if dla.ReadGrid(positionOfNewCell) == false {
+		// If the particle is allowed to move into new desired position...
+
 		dla.SetGrid(lastParticle.position, false)
 		lastParticle.position = positionOfNewCell
 		dla.SetGrid(positionOfNewCell, true)
@@ -171,7 +185,7 @@ func (dla *DLASystem) MoveLastParticle() {
 		}
 	} else {
 		// If we get here then we are trying to move to an occupied site
-		// This should never happen as long as sticking probability = 1
+		// Don't do anything :)
 		if dla.verbose {
 			fmt.Printf("Move to (%d, %d) REJECTED", positionOfNewCell[0], positionOfNewCell[1])
 		}
@@ -226,15 +240,23 @@ func (dla *DLASystem) PauseSimulation() {
 
 // ShouldParticleStick determines if a particle should stick to a neighbour
 // when it moves to position
+// If we determine that we could stick, we return true with the sticking probability, false otherwise
 func (dla *DLASystem) ShouldParticleStick(particle *Particle) bool {
+	var couldStick = false
 	var shouldStick = false
+
 	var positionOfNeighbouringCell [2]int
 	for _, direction := range particle.GetAllowedDirections() {
 		positionOfNeighbouringCell = particle.DeterminePositionOfNeighbouringCell(direction)
 		if dla.ReadGrid(positionOfNeighbouringCell) {
-			shouldStick = true
+			couldStick = true
 		}
 	}
+
+	if couldStick {
+		shouldStick = dla.DetermineIfShouldStickInsteadOfRecoil()
+	}
+
 	return shouldStick
 }
 

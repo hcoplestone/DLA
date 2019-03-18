@@ -2,51 +2,51 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
 	"runtime"
 	"strconv"
-	"strings"
 	"sync"
+	"time"
 )
 
 func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
 	defer wg.Done()
 
-	dla := NewDLASystem(450, 1.2, 1.7, 3000, seed, false)
+	dla := NewDLASystem(30, 1.2, 1.7, 3000, seed, 0.5, false)
 	dla.isRunning = true
 
-	var filenameComponents []string
-	var csvFilename, gridFilename string
+	// var filenameComponents []string
+	// var csvFilename, gridFilename string
 
-	filenameComponents = []string{"results/second/ensemble", strconv.Itoa(systemID), ".csv"}
-	csvFilename = strings.Join(filenameComponents, "")
+	// filenameComponents = []string{"results/second/ensemble", strconv.Itoa(systemID), ".csv"}
+	// csvFilename = strings.Join(filenameComponents, "")
 
-	filenameComponents = []string{"results/second/ensemble", strconv.Itoa(systemID), ".dat"}
-	gridFilename = strings.Join(filenameComponents, "")
+	// filenameComponents = []string{"results/second/ensemble", strconv.Itoa(systemID), ".dat"}
+	// gridFilename = strings.Join(filenameComponents, "")
 
-	f, err := os.OpenFile(csvFilename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-	if err != nil {
-		log.Fatal(err)
-	}
+	// f, err := os.OpenFile(csvFilename, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	// if err != nil {
+	// 	log.Fatal(err)
+	// }
 
-	var lastNumberOfParticlesWrittenAt int
+	// var lastNumberOfParticlesWrittenAt int
 	i := 1
 	for {
+		time.Sleep(40 * time.Millisecond)
+
 		dla.Update()
 
-		if dla.numberOfParticles%100 == 0 && dla.lastParticleIsActive == false &&
-			lastNumberOfParticlesWrittenAt != dla.numberOfParticles {
-			if _, err := f.Write([]byte(fmt.Sprintf("%d,%f\n", dla.numberOfParticles, dla.clusterRadius))); err != nil {
-				log.Fatal(err)
-			}
-			if err == nil {
-				lastNumberOfParticlesWrittenAt = dla.numberOfParticles
-			}
-		}
+		// if dla.numberOfParticles%100 == 0 && dla.lastParticleIsActive == false &&
+		// 	lastNumberOfParticlesWrittenAt != dla.numberOfParticles {
+		// 	if _, err := f.Write([]byte(fmt.Sprintf("%d,%f\n", dla.numberOfParticles, dla.clusterRadius))); err != nil {
+		// 		log.Fatal(err)
+		// 	}
+		// 	if err == nil {
+		// 		lastNumberOfParticlesWrittenAt = dla.numberOfParticles
+		// 	}
+		// }
 
 		// if i%10 == 0 {
-		// dla.DisplayGrid()
+		dla.DisplayGrid()
 		// }
 		i++
 
@@ -55,12 +55,12 @@ func runSystem(seed int64, wg *sync.WaitGroup, systemID int) {
 		}
 	}
 
-	if err := f.Close(); err != nil {
-		log.Fatal(err)
-	}
+	// if err := f.Close(); err != nil {
+	// 	log.Fatal(err)
+	// }
 
 	fmt.Println("Writing grid " + strconv.Itoa(systemID) + " to disc...")
-	dla.PersistGridToFile(gridFilename)
+	// dla.PersistGridToFile(gridFilename)
 
 	fmt.Println("System " + strconv.Itoa(systemID) + " finished!")
 }
@@ -73,7 +73,7 @@ func main() {
 	var wg sync.WaitGroup
 
 	i := 0
-	for i < 4 {
+	for i < 1 {
 		wg.Add(1)
 		fmt.Printf("Starting system %d\n", i)
 		go runSystem(int64(i), &wg, i)
