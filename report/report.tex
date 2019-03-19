@@ -84,7 +84,7 @@ DLA clusters are fractal objects \cite{dla}. This means their geometric structur
 N_c(r_{max}) = (\alpha \cdot r_{max})^{d_f} + \beta
 \end{equation} 
 where $\alpha$, $\beta$ and $d_f$ are free parameters.
-Taking logs of both sides and differentiating with respect to $\ln r_{max}$ yields the relationship
+Taking the natural logarithm of both sides and differentiating with respect to $\ln r_{max}$ yields the relationship
 
 \begin{equation}
 \frac{d(\ln r_{max})}{d(\ln N_c)} = \frac{1 + \beta/(\alpha \cdot r_{max})^{d_f}}{d_f}
@@ -98,7 +98,7 @@ which can be used to trivially determine the fractal dimension of a simulated DL
 
 \subsection{Sticking Probabilities}
 
-DLA systems can be setup so that the sticking probability $p_{stick}$ is less than 1, indicating that a particle may sometimes collide with a cluster and recoil. This may be useful when studying systems with a high thermodynamic temperature, where free particles on average have higher kinetic energies as described by a Maxwellian distribution, for example. To achieve this, when the system determines that a particle has moved into a grid cell where there is the possibility of 'sticking', a random number $p$ is sampled from a continuous uniform distribution $P \sim$ $\mathcal{U}\{0, 1\}$. If $p \leq p_{stick}$ then the particle is marked as stationary and the system proceeds to add a new particle. In the case $p > p_{stick}$, the particle remains in the grid cell adjacent to the cluster but is not marked as stationary. The system then proceeds to generate a new random direction to attempt to move the particle in. If the algorithm tries to move the free particle into a grid cell that is occupied by a cluster cell, the move is rejected and a new random direction is generated until a successful move is made.
+DLA systems can be setup so that the sticking probability $p_{stick}$ is less than 1, indicating that a particle may sometimes collide with a cluster and recoil. This may be useful when studying systems with a high thermodynamic temperature, where free particles on average have higher kinetic energies as described by a Maxwellian distribution, for example. To achieve this, when the system determines that a particle has moved into a grid cell where there is the possibility of 'sticking', a random number $p$ is sampled from a continuous uniform distribution $P \sim$ $\mathcal{U}\{0, 1\}$. If $p \leq p_{stick}$ then the particle is marked as stationary and the system proceeds to add a new particle. In the case $p > p_{stick}$, the particle remains in the grid cell adjacent to the cluster but is not marked as stationary. The system then proceeds to generate a new random direction to attempt to move the particle in. If the algorithm tries to move the free particle into a grid cell that is occupied by a cluster cell, the move is rejected and new random directions are generated until a successful move is made.
 
 \section{Results}
 
