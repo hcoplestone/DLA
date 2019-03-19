@@ -28,7 +28,7 @@
 \address{Department of Physics,
 University of Bath, Bath BA2 7AY, United Kingdom}
 \begin{abstract}
-Abstract goes here
+Diffusion Limited Aggregation (DLA) is a model for describing systems where growth is driven primarily by diffusion. DLA clusters are fractal objects, and computational models have been used to determine that the fractal index $d_f$ of a 2D DLA cluster grown on a square lattice, in the limit of large cluster radius, is $d_f = 1.743 \pm 0.003$, which is in agreement with the literature value of 1.7\cite{fractalindexref}. A simulation parameter $p_{stick}$, the probability that a diffusing particle will stick to a DLA cluster, is introduced and it it shown that $d_f = d_f(p_{stick})$. A framework is then proposed that uses this result to link thermodynamics to the dynamics of the simulation of DLA clusters.
 \end{abstract}
 
 %\listoftodos
@@ -190,7 +190,7 @@ Although seemingly effective, the implementation of the kill circle could be som
 Another trivial but potentially significant improvement that could be made is the addition of adaptive step sizes. In cases where the diffusing particle is far away from a cluster particle, the number of lattice points that the free particle moves per iteration could be increased, with the number of lattice points moved being proportional to the distance of the free particle from its nearest neighbour in the cluster. This has the potential to significantly increase the time efficiency of the DLA simulation algorithm, if implemented carefully enough.
 
 \section{Conclusion}
-The fractal index of 2D DLA clusters, in the limit of large cluster radius, has been computed as $d_f = 1.743 \pm 0.003$ which is in agreement with the literature value of 1.7\cite{fractalindexref}.
+The fractal index of 2D DLA clusters with a sticking probability $p_{stick} = 1$, in the limit of large cluster radius, has been computed as $d_f = 1.743 \pm 0.003$ which is in agreement with the literature value of 1.7\cite{fractalindexref}. It has been computationally shown the fractal dimension of a 2D DLA cluster is a function of the sticking probability, with the fractal index tending to increase as the sticking probability is reduced from 1 to 0. A physical justification for this has been presented. A computational DLA cluster has been compared with a physical examples of a DLA system and possible reasons for dissimilarities have been explored. A framework for integrating thermodynamics into DLA simulations has been proposed.
 
 \section*{References}
 \bibliography{refs}
