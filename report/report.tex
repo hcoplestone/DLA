@@ -105,13 +105,15 @@ DLA systems can be setup so that the sticking probability $p_{stick}$ is less th
 \subsection{Determining the Fractal Dimensions of DLA Aggregates}
 
 \begin{figure}[t]
-  \centering
-  \includegraphics[width=0.7\linewidth]{images/loggraph.png}
-  \caption{Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$, for $p_{stick} = 1$ . Data points represent average over 1000 subsystems using equation \ref{averageequation}. Error bars represent the standard deviation in the values of $\ln r_{max}$. Application of equation \ref{dflogequation} yields $d_f = 1.743  \pm 0.003$.}
-  \label{fig:loggraph}
+    \centering
+    \subfloat[]{{\includegraphics[width=8.7cm]{images/loggraph.png} }}
+     \subfloat[]{{\includegraphics[width=8.7cm]{images/sticking.png} }}\\
+ 
+    \caption{(a) Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$, for $p_{stick} = 1$ . Error bars represent the standard deviation in the values of $\ln r_{max}$. (b) Describe graph. For (a) and (b), data points represent an ensemble average over $n=1000$ subsystems using equation \ref{averageequation}.}
+        \label{fig:loggraph}
 \end{figure}
 
-Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the cluster radius as a function of the natural log of the number of particles in the DLA cluster, averaged over $n=1000$ independent systems with different random number generator seeds. Application of equation \ref{dflogequation} yields a fractal dimension for 2D DLA systems of $d_f = 1.743 \pm 0.003$ for systems where the sticking probability $p_{stick} = 1$.
+Figure \ref{fig:loggraph} (a) shows the ensemble average of the natural log of the cluster radius as a function of the natural log of the number of particles in the DLA cluster, averaged over $n=1000$ independent systems with different random number generator seeds. Application of equation \ref{dflogequation} yields a fractal dimension for 2D DLA systems of $d_f = 1.743 \pm 0.003$ for systems where the sticking probability $p_{stick} = 1$.
 
 \subsection{Self Similarity}
 
@@ -153,14 +155,13 @@ Figure X \todo{include figure ref} indicates that fractal dimension increases as
 
 \subsection{Sticking Probabilities and Thermodynamics}
 
-The dynamical change of DLA systems as the sticking probability is changed has physical significance when linked to thermodynamics. To do so, some assumptions must be made. First, assume that the sticking probability is directly proportional the the average kinetic energy of the diffusing particles
+The dynamical change of DLA systems as the sticking probability is changed has physical significance when linked to thermodynamics. To do so, some assumptions must be made. First, assume that the sticking probability is linearly related to the the average kinetic energy of the diffusing particles by
 
 \begin{equation}
 \label{cases}
 p_{stick}=\cases{1 - \frac{1}{\mathcal{U}_c} \cdot \overline{\mathcal{U}}&for $0 \le \overline{\mathcal{U}} \le \mathcal{U}_c$\\
 0&for $\overline{\mathcal{U}} > \mathcal{U}_c$\\}
 \end{equation}
-
 where $p_{stick}$ is the sticking probability, $\overline{\mathcal{U}}$ is the average kinetic energy of the diffusion particles and $\mathcal{U}_c$ is a critical average kinetic energy at which point the diffusing particles are sufficiently energetic that the sticking probability becomes 0.
 
 Further assume the kinetic theory result $T = \alpha \overline{\mathcal{U}}$ holds where $T$ is absolute temperature and $\alpha$ is a real positive constant. This gives the relationship 
@@ -170,7 +171,6 @@ Further assume the kinetic theory result $T = \alpha \overline{\mathcal{U}}$ hol
 p_{stick}=\cases{1 - \frac{1}{T_c} \cdot T&for $0 \le T \le T_c$\\
 0&for $T > T_c$\\}
 \end{equation}
-
 where $T$ is the temperature of the DLA system and $T_c$ corresponds to an average kinetic energy of $\mathcal{U}_c$. That is to say, at $T_c$, the system is so energetic that no free particles stick to the DLA cluster.
 
 \subsection{Suggestions for Improvement}
