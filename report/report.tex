@@ -148,7 +148,8 @@ Figure \ref{fig:realcrystal} compares a simulated DLA cluster with an experiment
 
 \subsection{Suggestions for Improvement}
 Although seemingly effective, the implementation of the kill circle could be somewhat naive. If a particle walks outside of the kill circle it is, at present, simply terminated, and a new particle is added at random anywhere on the start circle. It may be more prudent to consider the probability of where the wandered particle is likely to reappear at a future instance of time as there could be a radial bias to the reappearance position, depending on the angle the particle wanders away from the system at. However, this is likely not significant as it could be expected that any radial bias would be averaged out over time because the probability distribution of the angle $\theta$ that the particle walks away from the system at is uniform.  Not withstanding this, a more sophisticated alternative using Green's functions and probability densities is presented in section 7.1 of "Diffusion-limited aggregation: A kinetic critical phenomenon?"\cite{dla2}. 
-Another trivial but potentially significant improvement is the addition of adaptive step sizes.
+
+Another trivial but potentially significant improvement is the addition of adaptive step sizes. In cases where the diffusing particle is far away from a cluster particle, the number of lattice points that the free particle moves per iteration could be increased, with the number of lattice points moved being proportional to the distance of the particle from its nearest neighbour in the cluster. This has the potential to increase the time efficiency of the DLA simulation algorithm.
 
 \section{Conclusion}
 bla

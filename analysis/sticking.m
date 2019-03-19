@@ -2,12 +2,15 @@ clear all;
 close all;
 clc;
 
-stickingProbabilities = [1:10];
+stickingProbabilities = [1 1.5 2 3 4 5 6 7 8 9 10];
+stickingProbabilityFileIndices = [1 15 2 3 4 5 6 7 8 9 10]
+
 dfs = [];
+dfErrors = [];
 
 ensembles = 1000;
 
-for probability = stickingProbabilities
+for probability = stickingProbabilityFileIndices
    
     i = 0;
 
@@ -20,7 +23,7 @@ for probability = stickingProbabilities
     Ns = [];
 
     while( i < ensembles )
-        fname = ['../results/stick2/ensemble-p', num2str(probability) ,'-#', num2str(i) ,'.csv'];
+        fname = ['../results/stick4/ensemble-p', num2str(probability) ,'-#', num2str(i) ,'.csv'];
         data = load(fname);
 
         % Number of particles
@@ -38,17 +41,14 @@ for probability = stickingProbabilities
     logNs = log(Ns)
 
     meanLogRs = mean(logRs, 2)
-
-    standDevInLogR = std(logRs, 0, 2);
-
-    % Fit a straight line to data
-    [p1, errorInP1] = polyfit(logNs(:,1), meanLogRs, 1);
-    [pevaled, delta] = polyval(p1, logNs(:, 1), errorInP1);
+    
+    [P, gof] = fit(meanLogRs, logNs(:,1), 'poly1')
 
     % Calculate df
-    df = 1/p1(1)
+    df = P.p1
     
-    dfs = [dfs df]   
+    dfs = [dfs df]
+    dfErrors = [dfErrors gof.rmse]
 end
 
 figure;
@@ -56,5 +56,13 @@ hold on;
 plot(stickingProbabilities/10, dfs, 'x');
 xlabel('$p_{stick}$', 'Interpreter', 'latex', 'FontSize', 16);
 ylabel('$d_f$', 'Interpreter', 'latex', 'FontSize', 16);
+
+errorbar(stickingProbabilities/10, dfs, dfErrors, 'LineStyle', 'none')
+
+legend_handle = legend('Ensemble average for $d_f$','Standard error in $d_f$');
+set(legend_handle,'Interpreter','latex');
+
+f=fit(stickingProbabilities'/10,dfs','poly2')
+plot(f)
 
 hold off;

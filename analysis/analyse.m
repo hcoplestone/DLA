@@ -14,7 +14,7 @@ Rs = [];
 Ns = [];
 
 while( i < ensembles )
-    fname = ['../results/ensemble', num2str(i) ,'.csv'];
+    fname = ['../results/stick4/ensemble-p9-#', num2str(i) ,'.csv'];
     data = load(fname);
     
     % Number of particles
