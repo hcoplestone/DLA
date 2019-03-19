@@ -5,47 +5,49 @@ The style file: plain.bst
 Database file #1: refs.bib
 Name 1 in "A. Souslov, V. Rimpilainen, and R. Jack" has a comma at the end for entry handout
 while executing---line 1049 of file plain.bst
+Warning--to sort, need author or key in fractalindexref
+Warning--empty author in fractalindexref
 Name 1 in "A. Souslov, V. Rimpilainen, and R. Jack" has a comma at the end for entry handout
 while executing---line 1090 of file plain.bst
-You've used 3 entries,
+You've used 4 entries,
             2118 wiz_defined-function locations,
-            517 strings with 4356 characters,
-and the built_in function-call counts, 797 in all, are:
-= -- 77
-> -- 33
+            522 strings with 4503 characters,
+and the built_in function-call counts, 970 in all, are:
+= -- 94
+> -- 34
 < -- 0
-+ -- 13
++ -- 14
 - -- 10
-* -- 44
-:= -- 144
-add.period$ -- 10
-call.type$ -- 3
-change.case$ -- 13
+* -- 59
+:= -- 167
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 16
 chr.to.int$ -- 0
-cite$ -- 3
-duplicate$ -- 30
-empty$ -- 69
+cite$ -- 6
+duplicate$ -- 40
+empty$ -- 88
 format.name$ -- 10
-if$ -- 168
+if$ -- 206
 int.to.chr$ -- 0
-int.to.str$ -- 3
-missing$ -- 3
-newline$ -- 18
+int.to.str$ -- 4
+missing$ -- 4
+newline$ -- 22
 num.names$ -- 6
-pop$ -- 17
+pop$ -- 19
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 13
 quote$ -- 0
-skip$ -- 22
+skip$ -- 30
 stack$ -- 0
-substring$ -- 30
-swap$ -- 3
+substring$ -- 35
+swap$ -- 4
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 10
-warning$ -- 0
+type$ -- 14
+warning$ -- 2
 while$ -- 7
-width$ -- 4
-write$ -- 35
+width$ -- 5
+write$ -- 44
 (There were 2 error messages)
