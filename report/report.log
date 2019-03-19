@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.13)  19 MAR 2019 05:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.13)  19 MAR 2019 06:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -752,21 +752,22 @@ Missing character: There is no ´ in font cmr10!
 Missing character: There is no ‚ in font cmr10!
 Missing character: There is no Ä in font cmr10!
 Missing character: There is no ê in font cmr10!
-) [5 <./images/cluster2.png> <./images/zinc.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 159.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 159.
- (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 159.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 159.
+ [5 <./images/cluster2.png> <./images/zinc.png>]) [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 160.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 160.
+
+(./report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 160.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 160.
 Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: 3BD90A62FE6F054B1D9030A939BF0C34;1009.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 159.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 160.
  ) 
 Here is how much of TeX's memory you used:
- 17543 strings out of 493014
- 328042 string characters out of 6133350
- 398613 words of memory out of 5000000
- 20747 multiletter control sequences out of 15000+600000
+ 17546 strings out of 493014
+ 328063 string characters out of 6133350
+ 398639 words of memory out of 5000000
+ 20748 multiletter control sequences out of 15000+600000
  9962 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,11n,96p,1913b,550s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -782,10 +783,10 @@ cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
 texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (5 pages, 411679 bytes).
+Output written on report.pdf (6 pages, 413158 bytes).
 PDF statistics:
- 206 PDF objects out of 1000 (max. 8388607)
- 169 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
+ 213 PDF objects out of 1000 (max. 8388607)
+ 175 compressed objects within 2 object streams
+ 43 named destinations out of 1000 (max. 500000)
  155 words of extra memory for PDF output out of 10000 (max. 10000000)
 
