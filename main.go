@@ -13,14 +13,14 @@ import (
 func runSystem(seed int64, wg *sync.WaitGroup, systemID int, stickingProbability float64) {
 	defer wg.Done()
 
-	dla := NewDLASystem(460, 1.2, 1.7, 1000, seed, stickingProbability, false)
+	dla := NewDLASystem(500, 1.2, 1.7, 2000, seed, stickingProbability, false)
 	dla.isRunning = true
 
 	var filenameComponents []string
 	var csvFilename string
 	// var gridFilename string
 
-	filenameComponents = []string{"results/stick/ensemble-p", strconv.Itoa(int(stickingProbability * 10)), "-#", strconv.Itoa(systemID), ".csv"}
+	filenameComponents = []string{"results/stick4/ensemble-p", strconv.Itoa(int(stickingProbability * 10)), "-#", strconv.Itoa(systemID), ".csv"}
 	csvFilename = strings.Join(filenameComponents, "")
 
 	// filenameComponents = []string{"results/stick/ensemble-p", strconv.Itoa(int(stickingProbability * 10)), "-#", strconv.Itoa(systemID), ".dat"}
@@ -97,16 +97,16 @@ func main() {
 
 	i := 0
 	var stickingProbability float64
-	for i < 300 {
-		j := 0
-		for j <= 10 {
-			wg.Add(1)
-			stickingProbability = float64(j) / 10.0
-			fmt.Printf("Starting system #%d, pstick = %f\n", i, stickingProbability)
-			go runSystem(int64(i), &wg, i, stickingProbability)
-			j++
-		}
-		i = i + 2
+	for i < 1000 {
+		j := 5
+		// for j <= 10 {
+		wg.Add(1)
+		stickingProbability = float64(j) / 10.0
+		fmt.Printf("Starting system #%d, pstick = %f\n", i, stickingProbability)
+		go runSystem(int64(i), &wg, i, stickingProbability)
+		// j = j + 1
+		// }
+		i = i + 1
 	}
 	fmt.Println("")
 

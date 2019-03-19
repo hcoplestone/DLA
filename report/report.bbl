@@ -15,10 +15,28 @@ V.~Rimpilainen A.~Souslov and R.~Jack.
 \newblock Dla coursework assignment.
 \newblock Handout, 2019.
 
+\bibitem{electrodeposition}
+Thomas~C. Halsey and Michael Leibig.
+\newblock Electrodeposition and diffusion‐limited aggregation.
+\newblock {\em The Journal of Chemical Physics}, 92(6):3756--3767, 1990.
+
 \bibitem{brownian}
 Albert~P Philipse.
 \newblock {\em Brownian Motion : Elements of Colloid Dynamics}.
 \newblock Undergraduate Lecture Notes in Physics. Springer International
   Publishing : Imprint: Springer, Cham, 2018.
+
+\bibitem{electricbreakdown}
+L.~Pietronero, A.~Erzan, and C.~Evertsz.
+\newblock Theory of laplacian fractals: Diffusion limited aggregation and
+  dielectric breakdown model.
+\newblock {\em Physica A: Statistical Mechanics and its Applications},
+  151(2):207 -- 245, 1988.
+
+\bibitem{heleshaw}
+Muhammad Sahimi and Yanis~C. Yortsos.
+\newblock Pattern formation in viscous fingering: A diffusion-limited
+  aggregation approach.
+\newblock {\em Phys. Rev. A}, 32:3762--3764, Dec 1985.
 
 \end{thebibliography}

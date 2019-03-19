@@ -31,7 +31,7 @@ University of Bath, Bath BA2 7AY, United Kingdom}
 Abstract goes here
 \end{abstract}
 
-\listoftodos
+%\listoftodos
 
 %Uncomment for PACS numbers title message
 %\pacs{00.00, 20.00, 42.10}
@@ -48,7 +48,7 @@ Although the coursework was initially presented as a C++ project, I took the lib
 
 \section{Introduction and Simulation Method}
 
-Diffusion Limited Aggregation (DLA) is a theory that models the process of how clusters of particles form in systems where growth is driven primarily by diffusion. \cite{dla}
+Diffusion Limited Aggregation (DLA) is a theory that models the process of how clusters of particles form in systems where growth is driven primarily by diffusion \cite{dla}. DLA theory is applicable to systems including Hele-Shaw flow \cite{heleshaw}, electrodeposition \cite{electrodeposition} and dielectric breakdown \cite{electricbreakdown}.
 
 \begin{figure}[b]
   \centering
@@ -107,11 +107,11 @@ DLA systems can be setup so that the sticking probability $p_{stick}$ is less th
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.8\linewidth]{images/loggraph.png}
-  \caption{Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$. Data points represent average over 1000 subsystems using equation \ref{averageequation}. Error bars represent the standard deviation in the values of $\ln r_{max}$. Application of equation \ref{dflogequation} yields $d_f = 1.74$.}
+  \caption{Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$. Data points represent average over 1000 subsystems using equation \ref{averageequation}. Error bars represent the standard deviation in the values of $\ln r_{max}$. Application of equation \ref{dflogequation} yields $d_f = 1.743  \pm 0.003$.}
   \label{fig:loggraph}
 \end{figure}
 
-Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the cluster radius as a function of the natural log of the number of particles in the DLA cluster, averaged over $n=1000$ independent systems with different random number generator seeds. Application of equation \ref{dflogequation} yields a fractal dimension for 2D DLA systems of $d_f = 1.74$. \todo{Need to calculate error}
+Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the cluster radius as a function of the natural log of the number of particles in the DLA cluster, averaged over $n=1000$ independent systems with different random number generator seeds. Application of equation \ref{dflogequation} yields a fractal dimension for 2D DLA systems of $d_f = 1.743 \pm 0.003$.
 
 \subsection{Self Similarity}
 
@@ -119,10 +119,10 @@ Figure \ref{fig:selfsimilar} shows graphical representations of the results of a
 
 \begin{figure}[t]
     \centering
-    \subfloat[Entire DLA Cluster]{{\includegraphics[width=8cm]{images/cluster.png} }}\quad
+    \subfloat[Simulated DLA Cluster]{{\includegraphics[width=8cm]{images/cluster.png} }}\quad
      \subfloat[Magnification of lower left branch]{{\includegraphics[width=8cm]{images/Zoomed.png} }}\\
  
-    \caption{Graphical representation of a DLA cluster with 3000 particles and a sticking probability of $p_{stick} = 1.0$. (a) shows the entire DLA cluster and (b) shows a magnification of the bordered section in (a).}
+    \caption{Graphical representation of a simulated DLA cluster with 3000 particles and a sticking probability of $p_{stick} = 1.0$. (a) shows the entire DLA cluster and (b) shows a magnification of the bordered section in (a).}
     \label{fig:selfsimilar}
 \end{figure}
 
@@ -131,7 +131,23 @@ Figure \ref{fig:selfsimilar} shows graphical representations of the results of a
 \section{Discussion}
 \subsection{Determining the Fractal Dimension of DLA Aggregates}
 
-The fractal dimension of the simulated 2D DLA clusters for sufficiently large cluster radius converges on 1.74. This is in agreement with the literature value of 1.7\cite{fractalindexref}.
+The fractal dimension of the simulated 2D DLA clusters for sufficiently large cluster radius converges on $1.743 \pm 0.003$. This is in agreement with the literature value for 2D DLA clusters of 1.7\cite{fractalindexref}. This indicates that the simulation algorithm presented here sufficiently models the behaviour of physical DLA systems.
+
+\subsection{Geometric Comparison with Experimental Results}
+
+\begin{figure}[t]
+    \centering
+    \subfloat[Simulated DLA Cluster]{{\includegraphics[width=6cm]{images/cluster2.png} }}\quad
+     \subfloat["A zinc electrodeposit produced in a thin cell" \cite{dla}]{{\includegraphics[width=5cm]{images/zinc.png} }}\\
+ 
+    \caption{Comparison of a simulated DLA cluster (3000 particles, $p_{stick} = 1.0$) with an experimentally produced zinc electrodeposit as presented in \cite{dla}.}
+    \label{fig:realcrystal}
+\end{figure}
+
+Figure \ref{fig:realcrystal} compares a simulated DLA cluster with an experimentally produced zinc electrodeposit - a system for which diffusion is the primary transport method, meaning DLA theory is applicable \cite{dla}. Both clusters demonstrate growth around a central attractor, with both clusters having visually similar radial branching patterns. The number of first order branches originating from the centre is greater in the experiment than in the simulated example, which could be explained by the greater surface area of the attractor in the experiment (the central electrode is not a point particle as in the simulation), meaning more particles can become attached. Another consideration is that, experimentally, particles are free to attach to the cluster at any arbitrary angle $\theta \in \{\mathcal{R} \cap [0, 2\pi) \}$ (neglecting possible chemical lattice constrains), whereas in the simulation we enforce a square lattice, with free particles only attaching if they are directly horizontally or vertically adjacent to a cluster particle, thus enforcing the unnatural constraint $\theta = m\pi/2, m \in [0,3]$.
+
+\subsection{Suggestions for Improvement}
+Make 3D?
 
 \section{Conclusion}
 bla

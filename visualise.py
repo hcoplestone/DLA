@@ -6,7 +6,7 @@ import matplotlib.patches as patches
 
 
 fig = plt.figure()
-i = 1
+i = 3
 
 filename = 'results/second/ensemble' + str(i) + '.dat'
 
@@ -25,9 +25,9 @@ ax.set_aspect('equal')
             #  origin="lower")
 
 # sub region of the original image
-x1, x2, y1, y2 = 160, 220, 300, 240 # specify the limits
-ax.set_xlim(x1, x2)
-ax.set_ylim(y1, y2)
+# x1, x2, y1, y2 = 160, 220, 300, 240 # specify the limits
+# ax.set_xlim(x1, x2)
+# ax.set_ylim(y1, y2)
 
 # mark_inset(ax, axins, loc1=4, loc2=1, fc="none", ec="0.5")
 

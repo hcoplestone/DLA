@@ -46,15 +46,17 @@ plot(logNs(:,1), meanLogRs, 'x')
 errorbar(logNs(:,1), meanLogRs, standDevInLogR, 'LineStyle', 'none')
 
 % Fit a straight line to data
-[p1, errorInP1] = polyfit(logNs(:,1), meanLogRs, 1);
-[pevaled, delta] = polyval(p1, logNs(:, 1), errorInP1);
-plot(logNs(:,1), pevaled, 'r');
+% [p1, errorInP1] = polyfit(logNs(:,1), meanLogRs, 1);
+[p1, errorInP1] = polyfit(meanLogRs,logNs(:,1), 1);
+[pevaled, delta] = polyval(p1, meanLogRs, errorInP1);
+plot(pevaled, meanLogRs, 'r'); % plot x(y) and y
 % plot(logNs(:,1),pevaled+5*delta,'m--',logNs(:,1),pevaled-5*delta,'m--');
 legend_handle = legend('Ensemble average','Standard deviation in $\ln r_{max}$', 'Linear fit');
 set(legend_handle,'Interpreter','latex');
 
 % Calculate df
-df = 1/p1(1)
+df = p1(1)
+errorInP1
 
 hold off;
 xlabel('$\ln N_c$', 'Interpreter', 'latex', 'FontSize', 16);
