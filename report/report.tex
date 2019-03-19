@@ -175,12 +175,12 @@ p_{stick}=\cases{1 - \frac{1}{T_c} \cdot T&for $0 \le T \le T_c$\\
 \end{equation}
 where $T$ is the temperature of the DLA system and $T_c$ corresponds to an average kinetic energy of $\mathcal{U}_c$. That is to say, at $T_c$, the system is so energetic that no free particles stick to the DLA cluster.
 
-If the number of particles in the system at an instant is considered an indicator of the progress of system time, $\tau$, then the DLA system can be setup to have a time dependent probability of sticking, $p_{stick} = p_{stick}(\tau)$. By application of equation \ref{eq:thermal}, this allows the DLA system to be studied as a function of $T(\tau)$. This means we can theoretically use DLA simulations to investigate the impact of modulating temperature over time on the result of growing crystal structures, for example. Some example time dependent temperature modulations that could be of interest are shown in Figure \ref{fig:temps}.
+If the number of particles in the system at an instant is considered an indicator of the progress of system time, $\tau$, then the DLA system can be setup to have a time dependent probability of sticking, $p_{stick} = p_{stick}(\tau)$. By application of equation \ref{eq:thermal}, this allows the DLA system to be studied as a function of $T(\tau)$. This means we can theoretically use DLA simulations to investigate the impact of modulating temperature over time on the result of growing crystal structures, for example. Some example time dependent temperature modulations that could be of interest are shown in Figure \ref{fig:temps}. Temperature modulation as shown in the left graph could be used to model the case of pulse heating a DLA crystal structure as it grows. The second and third temperature modulations represent situations where a DLA system is gradually heated or cooled over time. Time constrains did not permit exploration of these systems, however it would be interesting to investigate if these have any affect on the geometry of the resultant crystal structures.
 
 \begin{figure}[t]
   \centering
   \includegraphics[width=\linewidth]{images/temps.png}
-  \caption{blah blah}
+  \caption{Possible temperature modulations for a DLA system as a function of system time $\tau$. The first graph represents a system where the temperature is modified sinusoidally, perhaps representing in a pulse mode heating configuration. The second and third graphs represent a system being uniformly and linearly heated and cooled between two temperatures $T_1$ and $T_2$ respectively.}
   \label{fig:temps}
 \end{figure}
 
@@ -190,7 +190,7 @@ Although seemingly effective, the implementation of the kill circle could be som
 Another trivial but potentially significant improvement that could be made is the addition of adaptive step sizes. In cases where the diffusing particle is far away from a cluster particle, the number of lattice points that the free particle moves per iteration could be increased, with the number of lattice points moved being proportional to the distance of the free particle from its nearest neighbour in the cluster. This has the potential to significantly increase the time efficiency of the DLA simulation algorithm, if implemented carefully enough.
 
 \section{Conclusion}
-bla
+The fractal index of 2D DLA clusters, in the limit of large cluster radius, has been computed as $d_f = 1.743 \pm 0.003$ which is in agreement with the literature value of 1.7\cite{fractalindexref}.
 
 \section*{References}
 \bibliography{refs}
