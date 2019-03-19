@@ -2,8 +2,8 @@ clear all;
 close all;
 clc;
 
-stickingProbabilities = [1 1.5 2 3 4 5 6 7 8 9 10];
-stickingProbabilityFileIndices = [1 15 2 3 4 5 6 7 8 9 10]
+stickingProbabilities = [1 1.5 2 2.5 3 4 5 6 7 8 9 10];
+stickingProbabilityFileIndices = [1 15 2 25 3 4 5 6 7 8 9 10]
 
 dfs = [];
 dfErrors = [];
@@ -54,15 +54,16 @@ end
 figure;
 hold on;
 plot(stickingProbabilities/10, dfs, 'x');
-xlabel('$p_{stick}$', 'Interpreter', 'latex', 'FontSize', 16);
-ylabel('$d_f$', 'Interpreter', 'latex', 'FontSize', 16);
 
 errorbar(stickingProbabilities/10, dfs, dfErrors, 'LineStyle', 'none')
 
 legend_handle = legend('Ensemble average for $d_f$','Standard error in $d_f$');
 set(legend_handle,'Interpreter','latex');
 
-f=fit(stickingProbabilities'/10,dfs','poly2')
+f=fit(stickingProbabilities'/10,dfs','poly1')
 plot(f)
+
+xlabel('$p_{stick}$', 'Interpreter', 'latex', 'FontSize', 16);
+ylabel('$d_f$', 'Interpreter', 'latex', 'FontSize', 16);
 
 hold off;

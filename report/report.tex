@@ -52,14 +52,14 @@ Diffusion Limited Aggregation (DLA) is a theory that models the process of how c
 
 \begin{figure}[b]
   \centering
-  \includegraphics[width=0.5\linewidth]{images/circles.png}
+  \includegraphics[width=0.4\linewidth]{images/circles.png}
   \caption{"Diagram of the circles used in the DLA code. The initial particle is shown in dark blue, and all circles are centred on this particle. There are three circles which indicate the approximate cluster size ('cluster circle'), the locations at which particles are introduced to the system ('starting circle'), and the points at which particles are removed from the system, to prevent them from wandering too far from the cluster ('killing circle')." Diagram and caption lifted verbatim from \cite{handout}.}
   \label{fig:circles}
 \end{figure}
 
 In the DLA method used in this paper, a stationary seed particle is placed at the centre of a regular square lattice. This seed particle defines the origin of our system, as shown in Figure 1. A particle is then added to the system at a radius $r_{start}$ from the origin. This radius is computed such that each new particle is added at a radius greater than the radius of any stationary particle in the system. Diffusion limited transport is driven by Brownian motion \cite{brownian}, a random process, so the new particle is made to undergo a Markovian random walk through the system. If the particle moves to a cell on the lattice that is horizontally or vertically adjacent to a stationary particle, the particle is stuck to the grid cell with a sticking probability $p_{stick}$. If the particle moves too far away from the cluster, as defined by a radius $r_{kill}$, the particle is removed from the system. This is done to increase the time efficiency of the program, as it removes the possibility of a particle moving into regions of space where the probability of sticking to the cluster in any reasonable number of further steps is extremely small. Once a particle is stuck to the cluster or killed for 'walking' too far away, a new particle is added on the start circle and the process is repeated. The simulation is terminated when the border of the cluster approaches the edge of the fixed-dimension grid or when the total number of particles in the cluster reaches a predefined limit.
 
-In this paper, it is tested to see if the maximum number of particles used in a DLA system affects the fractal index of the generated cluster. Enquiry is also made into how fractal dimension depends on the sticking probability $p_{stick}$, as this links to the thermodynamics of physical systems that can be modelled using DLA.
+In this paper, the fractal dimensions of simulated 2D DLA clusters are determined. Enquiry is also made into how fractal dimension depends on the sticking probability $p_{stick}$, as this links to the thermodynamics of physical systems that can be modelled using DLA.
 
 \section{Method}
 \subsection{Random Walks and Ensemble Averaging}
@@ -106,12 +106,12 @@ DLA systems can be setup so that the sticking probability $p_{stick}$ is less th
 
 \begin{figure}[t]
   \centering
-  \includegraphics[width=0.8\linewidth]{images/loggraph.png}
-  \caption{Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$. Data points represent average over 1000 subsystems using equation \ref{averageequation}. Error bars represent the standard deviation in the values of $\ln r_{max}$. Application of equation \ref{dflogequation} yields $d_f = 1.743  \pm 0.003$.}
+  \includegraphics[width=0.7\linewidth]{images/loggraph.png}
+  \caption{Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$, for $p_{stick} = 1$ . Data points represent average over 1000 subsystems using equation \ref{averageequation}. Error bars represent the standard deviation in the values of $\ln r_{max}$. Application of equation \ref{dflogequation} yields $d_f = 1.743  \pm 0.003$.}
   \label{fig:loggraph}
 \end{figure}
 
-Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the cluster radius as a function of the natural log of the number of particles in the DLA cluster, averaged over $n=1000$ independent systems with different random number generator seeds. Application of equation \ref{dflogequation} yields a fractal dimension for 2D DLA systems of $d_f = 1.743 \pm 0.003$.
+Figure \ref{fig:loggraph} shows the ensemble average of the natural log of the cluster radius as a function of the natural log of the number of particles in the DLA cluster, averaged over $n=1000$ independent systems with different random number generator seeds. Application of equation \ref{dflogequation} yields a fractal dimension for 2D DLA systems of $d_f = 1.743 \pm 0.003$ for systems where the sticking probability $p_{stick} = 1$.
 
 \subsection{Self Similarity}
 
@@ -122,22 +122,23 @@ Figure \ref{fig:selfsimilar} shows graphical representations of the results of a
     \subfloat[Simulated DLA Cluster]{{\includegraphics[width=8cm]{images/cluster.png} }}\quad
      \subfloat[Magnification of lower left branch]{{\includegraphics[width=8cm]{images/Zoomed.png} }}\\
  
-    \caption{Graphical representation of a simulated DLA cluster with 3000 particles and a sticking probability of $p_{stick} = 1.0$. (a) shows the entire DLA cluster and (b) shows a magnification of the bordered section in (a).}
+    \caption{Graphical representation of a simulated DLA cluster (3000 particles, $p_{stick} = 1.0$). (a) shows the entire DLA cluster and (b) shows a magnification of the bordered section in (a).}
     \label{fig:selfsimilar}
 \end{figure}
 
 \subsection{Sticking Probabilities}
 
+
 \section{Discussion}
 \subsection{Determining the Fractal Dimension of DLA Aggregates}
 
-The fractal dimension of the simulated 2D DLA clusters for sufficiently large cluster radius converges on $1.743 \pm 0.003$. This is in agreement with the literature value for 2D DLA clusters of 1.7\cite{fractalindexref}. This indicates that the simulation algorithm presented here sufficiently models the behaviour of physical DLA systems.
+The fractal dimension of the simulated 2D DLA clusters for sufficiently large cluster radius converges on $1.743 \pm 0.003$. This is in agreement with the literature value for 2D DLA clusters of 1.7\cite{fractalindexref}. This indicates that the simulation algorithm presented here sufficiently approximates the behaviour of physical DLA systems for cases where $p_{stick} = 1$.
 
 \subsection{Geometric Comparison with Experimental Results}
 
 \begin{figure}[t]
     \centering
-    \subfloat[Simulated DLA Cluster]{{\includegraphics[width=6cm]{images/cluster2.png} }}\quad
+    \subfloat[Simulated DLA Cluster]{{\includegraphics[width=6cm]{images/cluster2.png} }}\quad \quad \quad \quad \quad \quad \quad
      \subfloat["A zinc electrodeposit produced in a thin cell" \cite{dla}]{{\includegraphics[width=5cm]{images/zinc.png} }}\\
  
     \caption{Comparison of a simulated DLA cluster (3000 particles, $p_{stick} = 1.0$) with an experimentally produced zinc electrodeposit as presented in \cite{dla}.}
@@ -145,6 +146,32 @@ The fractal dimension of the simulated 2D DLA clusters for sufficiently large cl
 \end{figure}
 
 Figure \ref{fig:realcrystal} compares a simulated DLA cluster with an experimentally produced zinc electrodeposit - a system for which diffusion is the primary transport method, meaning DLA theory is applicable \cite{dla}. Both clusters demonstrate growth around a central attractor, with both clusters having visually similar radial branching patterns. The number of first order branches originating from the centre is greater in the experiment than in the simulated example, which could be explained by the greater surface area of the attractor in the experiment (the central electrode is not a point particle unlike the centre particle in the simulation), meaning more particles can become attached. Another consideration is that, experimentally, diffusing particles are free to attach to a cluster particle at any arbitrary angle $\theta \in \{\mathcal{R} \cap [0, 2\pi) \}$ (neglecting possible chemical lattice constrains), whereas in the simulation we enforce a square lattice, with free particles only attaching if they are directly horizontally or vertically adjacent to a cluster particle, thus enforcing the unnatural constraint $\theta = m\pi/2, m \in [0,3]$. This could be mitigated by allowing diagonal attachment and could be verified by further investigating the effect, if any, of simulating DLA clusters with different lattice arrangements. However, determining if lattice arrangement affects the geometry of the produced clusters would require a more sophisticated method of quantifying the distribution and arrangement of the cluster branches, which is outside the scope of this paper.  More simply, the case here could also be that, due to DLA simulations being stochastic, the same simulation setup with a different random number generator seed could produce a greater (or indeed fewer) number of branches -  with the number of branches simply being 'random'.
+
+\subsection{The Effect of Sticking Probability on Fractal Dimension}
+
+Figure X \todo{include figure ref} indicates that fractal dimension increases as the sticking probability is reduced from $1$ to $0$. This makes physical sense as, for low sticking probabilities, free particles have a greater chance of reaching the 'inside' of the cluster, as opposed to immediately becoming stuck on the end of the first branch they encounter. This has the effect of increasing the number of particles in the cluster $N_c$ for a given cluster radius $r_{max}$. Inspection of equation \ref{dflogequation} confirms that increasing $N_c$ for a given $r_{max}$ increases the fractal dimension, as would be the effect of lowering the sticking probability.
+
+\subsection{Sticking Probabilities and Thermodynamics}
+
+The dynamical change of DLA systems as the sticking probability is changed has physical significance when linked to thermodynamics. To do so, some assumptions must be made. First, assume that the sticking probability is directly proportional the the average kinetic energy of the diffusing particles
+
+\begin{equation}
+\label{cases}
+p_{stick}=\cases{1 - \frac{1}{\mathcal{U}_c} \cdot \overline{\mathcal{U}}&for $0 \le \overline{\mathcal{U}} \le \mathcal{U}_c$\\
+0&for $\overline{\mathcal{U}} > \mathcal{U}_c$\\}
+\end{equation}
+
+where $p_{stick}$ is the sticking probability, $\overline{\mathcal{U}}$ is the average kinetic energy of the diffusion particles and $\mathcal{U}_c$ is a critical average kinetic energy at which point the diffusing particles are sufficiently energetic that the sticking probability becomes 0.
+
+Further assume the kinetic theory result $T = \alpha \overline{\mathcal{U}}$ holds where $T$ is absolute temperature and $\alpha$ is a real positive constant. This gives the relationship 
+
+\begin{equation}
+\label{cases}
+p_{stick}=\cases{1 - \frac{1}{T_c} \cdot T&for $0 \le T \le T_c$\\
+0&for $T > T_c$\\}
+\end{equation}
+
+where $T$ is the temperature of the DLA system and $T_c$ corresponds to an average kinetic energy of $\mathcal{U}_c$. That is to say, at $T_c$, the system is so energetic that no free particles stick to the DLA cluster.
 
 \subsection{Suggestions for Improvement}
 Although seemingly effective, the implementation of the kill circle could be somewhat naive. If a particle walks outside of the kill circle it is, at present, simply terminated, and a new particle is added at random anywhere on the start circle. It may be more prudent to consider the probability of where the wandered particle is likely to reappear at a future instance of time as there could be a radial bias to the reappearance position, depending on the angle the particle wanders away from the system at. However, this is likely not significant as it could be expected that any radial bias would be averaged out over time because the probability distribution of the angle $\theta$ that the particle walks away from the system at is uniform.  Not withstanding this, a more sophisticated alternative using Green's functions and probability densities is presented in section 7.1 of "Diffusion-limited aggregation: A kinetic critical phenomenon?"\cite{dla2}. 

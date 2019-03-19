@@ -98,7 +98,7 @@ func main() {
 	i := 0
 	var stickingProbability float64
 	for i < 1000 {
-		j := 1.5
+		j := 9.5
 		// for j <= 10 {
 		wg.Add(1)
 		stickingProbability = float64(j) / 10.0
