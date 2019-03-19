@@ -48,9 +48,9 @@ Although the coursework was initially presented as a C++ project, I took the lib
 
 \section{Introduction and Simulation Method}
 
-Diffusion Limited Aggregation (DLA) is a theory that models the process of how clusters of particles form in systems where growth is driven primarily by diffusion \cite{dla}. DLA theory is applicable to systems including Hele-Shaw flow \cite{heleshaw}, electrodeposition \cite{electrodeposition} and dielectric breakdown \cite{electricbreakdown}.
+Diffusion Limited Aggregation (DLA) is a theory that models the process of how clusters of particles form in systems where growth is driven primarily by diffusion \cite{dla}. DLA theory is applicable to many systems including Hele-Shaw flow \cite{heleshaw}, electrodeposition \cite{electrodeposition} and dielectric breakdown \cite{electricbreakdown}.
 
-\begin{figure}[b]
+\begin{figure}[t]
   \centering
   \includegraphics[width=0.4\linewidth]{images/circles.png}
   \caption{"Diagram of the circles used in the DLA code. The initial particle is shown in dark blue, and all circles are centred on this particle. There are three circles which indicate the approximate cluster size ('cluster circle'), the locations at which particles are introduced to the system ('starting circle'), and the points at which particles are removed from the system, to prevent them from wandering too far from the cluster ('killing circle')." Diagram and caption lifted verbatim from \cite{handout}.}
@@ -78,12 +78,12 @@ To simulate the Brownian motion of diffusing particles, DLA simulations have fre
 
 \subsection{Determining the Fractal Dimension of DLA Aggregates}
 
-DLA clusters are fractal objects \cite{dla}. This means their geometric structure can be described by a measure called 'fractal index', $d_f$. For a given DLA system, the fractal dimension is implicitly defined by \cite{handout}
+DLA clusters are fractal objects \cite{dla}. This means their geometric structure can be described by a measure called 'fractal index', $d_f$. For a given DLA cluster, the fractal dimension is implicitly defined by \cite{handout}
 
 \begin{equation}
 N_c(r_{max}) = (\alpha \cdot r_{max})^{d_f} + \beta
 \end{equation} 
-where $\alpha$, $\beta$ and $d_f$ are free parameters.
+where $\alpha$, $\beta$ and $d_f$ are free parameters, $N_c$ is the number of particles in the cluster and $r_{max}$ is the cluster radius as depicted in Figure \ref{fig:circles}.
 Taking the natural logarithm of both sides and differentiating with respect to $\ln r_{max}$ yields the relationship
 
 \begin{equation}
@@ -109,7 +109,7 @@ DLA systems can be setup so that the sticking probability $p_{stick}$ is less th
     \subfloat[]{{\includegraphics[width=8.7cm]{images/loggraph.png} }}
      \subfloat[]{{\includegraphics[width=8.7cm]{images/sticking.png} }}\\
  
-    \caption{(a) Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$, for $p_{stick} = 1$ . Error bars represent the standard deviation in the values of $\ln r_{max}$. (b) shows how the fractal dimension varies for a system with 2000 particles as the sticking probability is varied. For (a) and (b), data points represent an ensemble average over $n=1000$ subsystems using equation \ref{averageequation}.}
+    \caption{(a) Natural log of cluster radius, $r_{max}$, as a function of the natural log of the number of particles in the cluster, $N_c$, for $p_{stick} = 1$ . Error bars represent the standard deviation in the values of $\ln r_{max}$. (b) shows how the fractal dimension varies for a system with 2000 particles as the sticking probability is varied in the interval $p_{stick} \in (0, 1]$. Error bars represent the standard error in the ensemble average of $d_f$. For (a) and (b), data points represent an ensemble average over $n=1000$ subsystems using equation \ref{averageequation}.}
         \label{fig:loggraph}
         \label{fig:stickinggraph}
 \end{figure}

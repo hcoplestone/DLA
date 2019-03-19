@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.13)  19 MAR 2019 12:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.13)  19 MAR 2019 12:30
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -730,13 +730,13 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 105.
 
-<images/loggraph.png, id=117, 1124.2pt x 843.15pt>
+<images/loggraph.png, id=118, 1124.2pt x 843.15pt>
 File: images/loggraph.png Graphic file (type png)
  <use images/loggraph.png>
 Package pdftex.def Info: images/loggraph.png used on input line 109.
 (pdftex.def)             Requested size: 247.53888pt x 185.64795pt.
 
-<images/sticking.png, id=118, 1124.2pt x 843.15pt>
+<images/sticking.png, id=119, 1124.2pt x 843.15pt>
 File: images/sticking.png Graphic file (type png)
  <use images/sticking.png>
 Package pdftex.def Info: images/sticking.png used on input line 110.
@@ -747,13 +747,13 @@ Overfull \hbox (22.37775pt too wide) in paragraph at lines 109--110
  []
 
 [3 <./images/loggraph.png (PNG copy)> <./images/sticking.png (PNG copy)>]
-<images/cluster.png, id=136, 462.528pt x 346.896pt>
+<images/cluster.png, id=137, 462.528pt x 346.896pt>
 File: images/cluster.png Graphic file (type png)
  <use images/cluster.png>
 Package pdftex.def Info: images/cluster.png used on input line 125.
 (pdftex.def)             Requested size: 227.62204pt x 170.71628pt.
 
-<images/Zoomed.png, id=137, 462.528pt x 346.896pt>
+<images/Zoomed.png, id=138, 462.528pt x 346.896pt>
 File: images/Zoomed.png Graphic file (type png)
  <use images/Zoomed.png>
 Package pdftex.def Info: images/Zoomed.png used on input line 126.
@@ -771,13 +771,13 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                removing `math shift' on input line 136.
 
-<images/cluster2.png, id=142, 290.16405pt x 260.172pt>
+<images/cluster2.png, id=143, 290.16405pt x 260.172pt>
 File: images/cluster2.png Graphic file (type png)
 
 <use images/cluster2.png>
 Package pdftex.def Info: images/cluster2.png used on input line 144.
 (pdftex.def)             Requested size: 170.71652pt x 153.07138pt.
- <images/zinc.png, id=143, 290.08376pt x 276.03125pt>
+ <images/zinc.png, id=144, 290.08376pt x 276.03125pt>
 File: images/zinc.png Graphic file (type png)
 
 <use images/zinc.png>
@@ -785,7 +785,7 @@ Package pdftex.def Info: images/zinc.png used on input line 145.
 (pdftex.def)             Requested size: 142.26378pt x 135.37021pt.
  [4 <./images/cluster.png> <./images/Zoomed.png>] [5 <./images/cluster2.png> <.
 /images/zinc.png>]
-<images/temps.png, id=174, 2125.9425pt x 541.02126pt>
+<images/temps.png, id=175, 2125.9425pt x 541.02126pt>
 File: images/temps.png Graphic file (type png)
  <use images/temps.png>
 Package pdftex.def Info: images/temps.png used on input line 182.
@@ -832,10 +832,10 @@ exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texl
 ive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texli
 ve/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (7 pages, 483053 bytes).
+Output written on report.pdf (7 pages, 483286 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 205 compressed objects within 3 object streams
+ 249 PDF objects out of 1000 (max. 8388607)
+ 206 compressed objects within 3 object streams
  51 named destinations out of 1000 (max. 500000)
  181 words of extra memory for PDF output out of 10000 (max. 10000000)
 
