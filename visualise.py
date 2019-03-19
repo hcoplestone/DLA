@@ -6,9 +6,9 @@ import matplotlib.patches as patches
 
 
 fig = plt.figure()
-i = 3
+i = 0
 
-filename = 'results/second/ensemble' + str(i) + '.dat'
+filename = 'results/thermal/ensemble#' + str(i) + '.dat'
 
 grid = np.loadtxt(filename, int)
 ax = fig.add_subplot(1, 1, 1)

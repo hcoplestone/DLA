@@ -21,7 +21,7 @@
 %Makes TODO notes format properly in margin
 \setlength{\marginparwidth}{1.5cm}
 
-\title[]{Thermodynamics and Diffusion Limited Aggregation}
+\title[]{Comp B: Diffusion Limited Aggregation}
 
 \author{Candidate Number: 21594}
 
@@ -168,11 +168,21 @@ where $p_{stick}$ is the sticking probability, $\overline{\mathcal{U}}$ is the a
 Further assume the kinetic theory result $T = \alpha \overline{\mathcal{U}}$ holds where $T$ is absolute temperature and $\alpha$ is a real positive constant. This gives the relationship 
 
 \begin{equation}
+\label{eq:thermal}
 \label{cases}
 p_{stick}=\cases{1 - \frac{1}{T_c} \cdot T&for $0 \le T \le T_c$\\
 0&for $T > T_c$\\}
 \end{equation}
 where $T$ is the temperature of the DLA system and $T_c$ corresponds to an average kinetic energy of $\mathcal{U}_c$. That is to say, at $T_c$, the system is so energetic that no free particles stick to the DLA cluster.
+
+If the number of particles in the system at an instant is considered an indicator of the progress of system time, $\tau$, then the DLA system can be setup to have a time dependent probability of sticking, $p_{stick} = p_{stick}(\tau)$. By application of equation \ref{eq:thermal}, this allows the DLA system to be studied as a function of $T(\tau)$. This means we can theoretically use DLA simulations to investigate the impact of modulating temperature over time on the result of growing crystal structures, for example. Some example time dependent temperature modulations that could be of interest are shown in Figure \ref{fig:temps}.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\linewidth]{images/temps.png}
+  \caption{blah blah}
+  \label{fig:temps}
+\end{figure}
 
 \subsection{Suggestions for Improvement}
 Although seemingly effective, the implementation of the kill circle could be somewhat naive. If a particle walks outside of the kill circle it is, at present, simply terminated, and a new particle is added at random anywhere on the start circle. It may be more prudent to consider the probability of where the wandered particle is likely to reappear at a future instant of time as there could be a radial bias to the reappearance position, depending on the angle the particle wanders away from the cluster at. However, this is likely not significant as it could be expected that any radial bias would be averaged out over time because the probability distribution of the angle $\theta$ that the particle walks away from the cluster at is uniform.  Notwithstanding this, a more sophisticated alternative using Green's functions and probability densities is presented in section 7.1 of "Diffusion-limited aggregation: A kinetic critical phenomenon?"\cite{dla2}. 

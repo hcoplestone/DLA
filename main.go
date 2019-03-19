@@ -68,25 +68,35 @@ func runSystem(seed int64, wg *sync.WaitGroup, systemID int, stickingProbability
 	fmt.Println("System " + strconv.Itoa(systemID) + " finished!")
 }
 
-// func main() {
-// 	numberOfCores := runtime.NumCPU()
-// 	fmt.Printf("Using " + strconv.Itoa(numberOfCores) + " cores...\n")
-// 	runtime.GOMAXPROCS(numberOfCores)
+func runThermalSystem(seed int64, wg *sync.WaitGroup, systemID int) {
+	defer wg.Done()
 
-// 	var wg sync.WaitGroup
+	dla := NewThermalDLASystem(1000, 1.2, 1.7, 7000, seed, false)
+	dla.isRunning = true
 
-// 	i := 0
-// 	for i < 1 {
-// 		wg.Add(1)
-// 		fmt.Printf("Starting system %d\n", i)
-// 		go runSystem(int64(i), &wg, i, 1.0)
-// 		i++
-// 	}
-// 	fmt.Println("")
+	var filenameComponents []string
+	var gridFilename string
 
-// 	wg.Wait()
-// 	fmt.Println("\nAll systems complete!!!")
-// }
+	filenameComponents = []string{"results/thermal/ensemble#", strconv.Itoa(systemID), "-sin.dat"}
+	gridFilename = strings.Join(filenameComponents, "")
+
+	i := 1
+	for {
+		// time.Sleep(40 * time.Millisecond)
+
+		dla.Update()
+		i++
+
+		if dla.isRunning == false {
+			break
+		}
+	}
+
+	fmt.Println("Writing grid " + strconv.Itoa(systemID) + " to disc...")
+	dla.PersistGridToFile(gridFilename)
+
+	fmt.Println("System " + strconv.Itoa(systemID) + " finished!")
+}
 
 func main() {
 	numberOfCores := runtime.NumCPU()
@@ -96,20 +106,40 @@ func main() {
 	var wg sync.WaitGroup
 
 	i := 0
-	var stickingProbability float64
-	for i < 1000 {
-		j := 9.5
-		// for j <= 10 {
+	for i < 1 {
 		wg.Add(1)
-		stickingProbability = float64(j) / 10.0
-		fmt.Printf("Starting system #%d, pstick = %f\n", i, stickingProbability)
-		go runSystem(int64(i), &wg, i, stickingProbability)
-		// j = j + 1
-		// }
-		i = i + 1
+		fmt.Printf("Starting system %d\n", i)
+		go runThermalSystem(int64(i), &wg, i)
+		i++
 	}
 	fmt.Println("")
 
 	wg.Wait()
 	fmt.Println("\nAll systems complete!!!")
 }
+
+// func main() {
+// 	numberOfCores := runtime.NumCPU()
+// 	fmt.Printf("Using " + strconv.Itoa(numberOfCores) + " cores...\n")
+// 	runtime.GOMAXPROCS(numberOfCores)
+
+// 	var wg sync.WaitGroup
+
+// 	i := 0
+// 	var stickingProbability float64
+// 	for i < 1000 {
+// 		j := 9.5
+// 		// for j <= 10 {
+// 		wg.Add(1)
+// 		stickingProbability = float64(j) / 10.0
+// 		fmt.Printf("Starting system #%d, pstick = %f\n", i, stickingProbability)
+// 		go runSystem(int64(i), &wg, i, stickingProbability)
+// 		// j = j + 1
+// 		// }
+// 		i = i + 1
+// 	}
+// 	fmt.Println("")
+
+// 	wg.Wait()
+// 	fmt.Println("\nAll systems complete!!!")
+// }
