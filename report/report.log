@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.13)  19 MAR 2019 09:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.13)  19 MAR 2019 09:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -759,11 +759,10 @@ File: images/zinc.png Graphic file (type png)
 <use images/zinc.png>
 Package pdftex.def Info: images/zinc.png used on input line 145.
 (pdftex.def)             Requested size: 142.26378pt x 135.37021pt.
- [4 <./images/cluster.png> <./images/Zoomed.png> <./images/cluster2.png> <./ima
-ges/zinc.png>]
+ [4 <./images/cluster.png> <./images/Zoomed.png>]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input l
 ine 155.
- [5] (./report.bbl
+ [5 <./images/cluster2.png> <./images/zinc.png>] (./report.bbl
 Missing character: There is no Â in font cmr10!
 Missing character: There is no « in font cmr10!
 Missing character: There is no â in font cmr10!
@@ -803,7 +802,7 @@ cal/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local
 texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/tex
 live/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on report.pdf (6 pages, 449318 bytes).
+Output written on report.pdf (6 pages, 449636 bytes).
 PDF statistics:
  228 PDF objects out of 1000 (max. 8388607)
  190 compressed objects within 2 object streams
